@@ -125,7 +125,13 @@ BOOTSTRAP4 = {
 }
 
 # Настройка heroku.com
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 if os.getcwd() == '/app':
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(default='postgres://localhost')}
+
+    # Extra places for collectstatic to find static files.
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
