@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load bootstrap4 %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мой супер блог</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a href="{% url 'blogs:index' %}" class="navbar-brand h1">Мой <span class="badge badge-secondary">блог</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarmenu" aria-controls="navbarmenu"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Схлопываемая область меню navbarmenu -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarmenu">
+            <ul class=" navbar-nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item">Добро пожаловать, {{user.username}} (<a href="{% url 'users:logout' %}">Выйти</a>)</li>
+                {% else %}
+                <li class="nav-item"><a href="{% url 'users:login' %}" class="nav-link">Войти</a></li>
+                <li class="nav-item"><a href="{% url 'users:register' %}" class="nav-link">Зарегистрироваться</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<p>
+
+</p>
+<div class="container">
+{% block content %}
+
+{% endblock content %}
+
+</div>
+
+</body>
+</html>
