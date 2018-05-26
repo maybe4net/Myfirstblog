@@ -123,3 +123,9 @@ LOGIN_URL = '/users/login/'
 BOOTSTRAP4 = {
     'include_jquery': True,
 }
+
+# Настройка heroku.com
+if os.getcwd() == '/app':
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(default='postgres://localhost')}
